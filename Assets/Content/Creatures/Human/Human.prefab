@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 6524441915444712897}
   - component: {fileID: 2059713297401845381}
   - component: {fileID: 5302871755143894454}
+  - component: {fileID: 7350072420188016656}
   m_Layer: 15
   m_Name: Human
   m_TagString: Untagged
@@ -431,6 +432,27 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   ViewRange: 25
+--- !u!114 &7350072420188016656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289348138277843802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdd6cd3e839c6b64180c2b08eaa2f8e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  AttackMask:
+    serializedVersion: 2
+    m_Bits: 32768
+  attackParticleEffect: {fileID: 7714517724079113232, guid: b604ce3224264694392255a281108306,
+    type: 3}
+  attackType: 0
+  damageAmount: 10
 --- !u!1 &290878266594310021
 GameObject:
   m_ObjectHideFlags: 0

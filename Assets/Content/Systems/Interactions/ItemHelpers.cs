@@ -12,10 +12,7 @@ namespace SS3D.Content.Systems.Interactions
         /// <param name="item">The item to destroy</param>
         public static void DestroyItem(Item item)
         {
-            if (item.container != null)
-            {
-                item.container.RemoveItem(item.GameObject);
-            }
+            item.RemoveFromContainer();
             
             NetworkServer.Destroy(item.GameObject);
         }

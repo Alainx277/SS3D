@@ -15,6 +15,7 @@ namespace SS3D.Engine.Health
     /// </summary>
     public class Attack : NetworkBehaviour
     {
+        public LayerMask AttackMask;
         [SerializeField] private GameObject attackParticleEffect = null;
         [SerializeField] private AttackType attackType = AttackType.Blunt;
         [SerializeField][Range(1,10)] private float damageAmount = 1f;
@@ -35,11 +36,10 @@ namespace SS3D.Engine.Health
             {
                 return;
             }
-
-            LayerMask layerMask = ~(1 << LayerMask.NameToLayer ("Player"));
+            
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if(!Physics.Raycast(ray, out hit, 10f, layerMask))
+            if(!Physics.Raycast(ray, out hit, 10f, AttackMask))
             {
                 return;
             }
@@ -77,7 +77,7 @@ namespace SS3D.Engine.Health
         [ClientRpc]
         private void RpcInstantiateAttackParticleEffect(Vector3 position)
         {
-            Instantiate(attackParticleEffect, position, Quaternion.identity);
+            Destroy(Instantiate(attackParticleEffect, position, Quaternion.identity), 1);
         }
     }
 }

@@ -117,13 +117,13 @@ namespace SS3D.Engine.Interactions
                         {
                             if (!instance.Interaction.Start(instance.Event, instance.Reference))
                             {
-                                interactions.Remove(instance);
+                                interactions.RemoveAt(index);
                                 index--;
                             }
                         }
                         catch (Exception)
                         {
-                            interactions.Remove(instance);
+                            interactions.RemoveAt(index);
                             throw;
                         }
                         
@@ -193,7 +193,10 @@ namespace SS3D.Engine.Interactions
             if (instance == null) return;
             
             RpcCancelInteraction(reference.Id);
-            instance.Interaction.Cancel(instance.Event, reference);
+            if (!instance.FirstTick)
+            {
+                instance.Interaction.Cancel(instance.Event, reference);
+            }
             interactions.Remove(instance);
         }
 
@@ -201,7 +204,7 @@ namespace SS3D.Engine.Interactions
         private void RpcCancelInteraction(int id)
         {
             ClientInteractionInstance instance = clientInteractions.FirstOrDefault(i => i.Reference.Id == id);
-            if (instance != null)
+            if (instance != null && !instance.FirstTick)
             {
                 instance.Interaction.ClientCancel(instance.Event);
                 clientInteractions.Remove(instance);

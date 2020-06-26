@@ -108,5 +108,18 @@ namespace SS3D.Engine.Inventory
         {
             return container != null;
         }
+
+        /// <summary>
+        /// Removes the item from the container it is in
+        /// </summary>
+        public void RemoveFromContainer()
+        {
+            if (container == null)
+            {
+                return;
+            }
+
+            container.RemoveItem(gameObject);
+        }
     }
 }

@@ -20,10 +20,11 @@ namespace SS3D.Content.Systems.Interactions
         /// Executed when the interaction takes place
         /// </summary>
         public Action<InteractionEvent, InteractionReference> Interact { get; set; }
+
         /// <summary>
         /// If a range check should be automatically performed
         /// </summary>
-        public bool RangeCheck { get; set; }
+        public bool RangeCheck { get; set; } = true;
 
         public IClientInteraction CreateClient(InteractionEvent interactionEvent)
         {

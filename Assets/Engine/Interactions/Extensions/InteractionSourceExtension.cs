@@ -14,20 +14,28 @@ namespace SS3D.Engine.Interactions.Extensions
 
             return current;
         }
+
+        public static T GetComponent<T>(this IInteractionSource source) where T : class
+        {
+            if (source is IGameObjectProvider provider)
+            {
+                return provider.GameObject.GetComponent<T>();
+            }
+
+            return null;
+        }
         
         public static T GetComponentInTree<T>(this IInteractionSource source) where T: class
         {
             IInteractionSource current = source;
             while (current != null)
             {
-                if (current is IGameObjectProvider provider)
+                T component = current.GetComponent<T>();
+                if (component != null)
                 {
-                    T component = provider.GameObject.GetComponent<T>();
-                    if (component != null)
-                    {
-                        return component;
-                    }
+                    return component;
                 }
+                
                 current = current.Parent;
             }
 

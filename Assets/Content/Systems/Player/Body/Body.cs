@@ -14,16 +14,11 @@ namespace SS3D.Content.Systems.Player.Body
 	public class Body : NetworkBehaviour
 	{
 		///The BodyPart objects that this MonoBehaviour is responsible for managing
-		private List<BodyPart> bodyParts = new List<BodyPart>();
+		private BodyPart[] bodyParts;
         private void Start()
         {
             //update the bodypart list
-            bodyParts.Clear();
-
-            foreach (BodyPart part in gameObject.GetComponentsInChildren<BodyPart>())
-            {
-                bodyParts.Add(part);
-            }
+            bodyParts = gameObject.GetComponentsInChildren<BodyPart>();
         }
 
         //TODO: implement bleeding

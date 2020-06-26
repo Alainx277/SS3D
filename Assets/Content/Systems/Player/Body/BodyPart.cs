@@ -85,6 +85,18 @@ namespace SS3D.Content.Systems.Player.Body
             PerformStatusAssociatedAction(status);
         }
 
+        public void Damage(DamageType type, float amount)
+        {
+            foreach (BodyPartDamage damage in BodyPartDamages)
+            {
+                if (damage.DamageType == type)
+                {
+                    damage.Damage(amount);
+                    break;
+                }
+            }
+        }
+
         private void PerformStatusAssociatedAction(BodyPartStatuses status)
         {          
             switch (status)
